@@ -31,13 +31,5 @@ status:
     - created: "2020-06-11T22:56:44Z"
       dockerImageReference: quay.io/neinnovationorg/customer-info-api@sha256:0ac1aa3858dfe14d57274cdc75ca782bfc76a54a24170498bf5eed9a466a4abb
       generation: 6
-      image: sha256:22662314cd684ea0c3a4839045af0c3cf70649680bd756c87d0dca041e7fa6b2
-    - created: "2020-06-10T01:58:19Z"
-      dockerImageReference: quay.io/neinnovationorg/customer-info-api@sha256:ef4506c8cd420a4d2caf4b6ce66e85d421f3694768bba03af67e0721f566cdf4
-      generation: 4
-      image: sha256:ef4506c8cd420a4d2caf4b6ce66e85d421f3694768bba03af67e0721f566cdf4
-    - created: "2020-06-04T03:51:56Z"
-      dockerImageReference: quay.io/neinnovationorg/customer-info-api@sha256:15b407621bb5f5941e5f4afc5b289e94d1920b4135de8192758e6cda5d912204
-      generation: 2
-      image: sha256:15b407621bb5f5941e5f4afc5b289e94d1920b4135de8192758e6cda5d912204
+      image: sha256:0ac1aa3858dfe14d57274cdc75ca782bfc76a54a24170498bf5eed9a466a4abb
     tag: dev
