@@ -78,7 +78,7 @@ metadata:
   name: customer-info-api
   namespace: development
 spec:
-  host: customer-info-api1-development.apps.awsopenshift.ne-innovation.com
+  host: customer-info-api-development.apps.awsopenshift.ne-innovation.com
   to:
     kind: Service
     name: customer-info-api
@@ -88,7 +88,7 @@ spec:
   wildcardPolicy: None
 status:
   ingress:
-    - host: customer-info-api1-development.apps.awsopenshift.ne-innovation.com
+    - host: customer-info-api-development.apps.awsopenshift.ne-innovation.com
       routerName: default
       conditions:
         - type: Admitted
