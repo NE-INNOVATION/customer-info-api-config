@@ -46,7 +46,7 @@ spec:
               key: mongo_collection_name
               name: mongo-connection
         image: quay.io/neinnovationorg/customer-info-api@sha256:36ff796f2988717f7876205976e94f64e94f9410bdfdaea85c716ed799df13b2
-        imagePullPolicy: Always
+        imagePullPolicy: IfNotPresent
         name: customer-info-api
         ports:
         - containerPort: 8080
