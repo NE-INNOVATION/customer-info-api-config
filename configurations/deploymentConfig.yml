@@ -45,7 +45,7 @@ spec:
             configMapKeyRef:
               key: mongo_collection_name
               name: mongo-connection
-        image: quay.io/neinnovationorg/customer-info-api@sha256:d20a5dfabde72bac8985d1d2ff930a0130f10101509be0ab2acbae18597aca3b
+        image: quay.io/neinnovationorg/customer-info-api:dev
         imagePullPolicy: IfNotPresent
         name: customer-info-api
         ports:
@@ -69,7 +69,7 @@ spec:
         kind: ImageStreamTag
         name: customer-info-api:dev
         namespace: development
-      lastTriggeredImage: quay.io/neinnovationorg/customer-info-api@sha256:d20a5dfabde72bac8985d1d2ff930a0130f10101509be0ab2acbae18597aca3b
+      lastTriggeredImage: quay.io/neinnovationorg/customer-info-api:dev
     type: ImageChange
   - type: ConfigChange
 ---
