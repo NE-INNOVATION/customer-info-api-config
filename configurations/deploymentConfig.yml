@@ -1,0 +1,97 @@
+apiVersion: apps.openshift.io/v1
+kind: DeploymentConfig
+metadata:
+  name: customer-info-api
+  namespace: development
+spec:
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    app: customer-info-api
+    deploymentconfig: customer-info-api
+  strategy:
+    activeDeadlineSeconds: 21600
+    resources: {}
+    rollingParams:
+      intervalSeconds: 1
+      maxSurge: 25%
+      maxUnavailable: 25%
+      timeoutSeconds: 600
+      updatePeriodSeconds: 1
+    type: Rolling
+  template:
+    metadata:
+      annotations:
+        openshift.io/generated-by: OpenShiftWebConsole
+      creationTimestamp: null
+      labels:
+        app: customer-info-api
+        deploymentconfig: customer-info-api
+    spec:
+      containers:
+      - env:
+        - name: CONNECTION_STRING
+          valueFrom:
+            configMapKeyRef:
+              key: mongo_connection
+              name: mongo-connection
+        - name: DB_NAME
+          valueFrom:
+            configMapKeyRef:
+              key: mongo_db_name
+              name: mongo-connection
+        - name: COLLECTION_NAME
+          valueFrom:
+            configMapKeyRef:
+              key: mongo_collection_name
+              name: mongo-connection
+        image: 'quay.io/neinnovationorg/customer-info-api:dev-56'
+        imagePullPolicy: IfNotPresent
+        name: customer-info-api
+        ports:
+        - containerPort: 8080
+          protocol: TCP
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+  test: false
+  triggers:
+  - imageChangeParams:
+      containerNames:
+      - customer-info-api
+      from:
+        kind: ImageStreamTag
+        name: customer-info-api:dev
+        namespace: development
+      lastTriggeredImage: 'quay.io/neinnovationorg/customer-info-api:dev-56'
+    type: ImageChange
+  - type: ConfigChange
+---
+kind: Route
+apiVersion: route.openshift.io/v1
+metadata:
+  name: customer-info-api
+  namespace: development
+spec:
+  host: customer-info-api-development.apps.awsopenshift.ne-innovation.com
+  to:
+    kind: Service
+    name: customer-info-api
+    weight: 100
+  port:
+    targetPort: 8080-tcp
+  wildcardPolicy: None
+status:
+  ingress:
+    - host: customer-info-api-development.apps.awsopenshift.ne-innovation.com
+      routerName: default
+      conditions:
+        - type: Admitted
+          status: 'True'
+      wildcardPolicy: None
+      routerCanonicalHostname: apps.awsopenshift.ne-innovation.com
